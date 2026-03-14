@@ -1,11 +1,14 @@
 package com.project.code.Model;
 
 
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 
+import java.util.List;
+
+@Entity
+@Table(name="product",uniqueConstraints = @UniqueConstraint(columnNames = "sku"))
 public class Product {
 
 // 1. Add 'id' field:
@@ -40,13 +43,17 @@ public class Product {
 //    - Type: private String
 //    - This field cannot be empty, must be unique, use the @NotNull annotation to enforce this rule.
 //    - Use the @Table annotation with uniqueConstraints to ensure the 'sku' column is unique.
-
+    @NotNull(message="SKU cannot be null")
+    private String sku;
 //    Example: @Table(name = "product", uniqueConstraints = @UniqueConstraint(columnNames = "sku"))
 
 // 6. Add relationships:
 //    - **Inventory**: A product can have multiple inventory entries.
 //    - Use @OneToMany(mappedBy = "product") to reflect the one-to-many relationship with Inventory.
 //    - Use @JsonManagedReference("inventory-product") to manage bidirectional relationships and avoid circular references.
+    @OneToMany(mappedBy = "product")
+    @JsonManagedReference("inventory-product")
+    private List<Inventory> inventories;
 
 // 7. Add @Entity annotation:
 //    - Use @Entity above the class name to mark it as a JPA entity.
@@ -54,6 +61,45 @@ public class Product {
 // 8. Add Getters and Setters:
 //    - Add getter and setter methods for all fields (id, name, category, price, sku).
 
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getCategory() {
+        return category;
+    }
+
+    public void setCategory(String category) {
+        this.category = category;
+    }
+
+    public Double getPrice() {
+        return price;
+    }
+
+    public void setPrice(Double price) {
+        this.price = price;
+    }
+
+    public String getSku() {
+        return sku;
+    }
+
+    public void setSku(String sku) {
+        this.sku = sku;
+    }
 }
 
 
