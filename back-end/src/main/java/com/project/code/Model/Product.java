@@ -1,6 +1,11 @@
 package com.project.code.Model;
 
 
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.validation.constraints.NotNull;
+
 public class Product {
 
 // 1. Add 'id' field:
@@ -8,18 +13,28 @@ public class Product {
 //    - This field will be auto-incremented.
 //    - Use @Id to mark it as the primary key.
 //    - Use @GeneratedValue(strategy = GenerationType.IDENTITY) to auto-increment it.
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private long id;
+
 
 // 2. Add 'name' field:
 //    - Type: private String
 //    - This field cannot be empty, use the @NotNull annotation to enforce this rule.
+    @NotNull(message = "Name cannot be null")
+    private String name;
 
 // 3. Add 'category' field:
 //    - Type: private String
 //    - This field cannot be empty, use the @NotNull annotation to enforce this rule.
+    @NotNull(message = "Category cannot be null")
+    private String category;
 
 // 4. Add 'price' field:
 //    - Type: private Double
 //    - This field cannot be empty, use the @NotNull annotation to enforce this rule.
+    @NotNull(message= "Price cannot be null")
+    private Double price;
 
 // 5. Add 'sku' field:
 //    - Type: private String
