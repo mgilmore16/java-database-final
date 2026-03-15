@@ -1,37 +1,54 @@
 package com.project.code.Model;
 
+import jakarta.persistence.Id;
+import jakarta.validation.constraints.NotNull;
+import org.springframework.data.mongodb.core.mapping.Document;
+
+@Document(collection = "reviews")
 public class Review {
+
+    @Id
+    private String id;
 
 // 1. Add 'customerId' field:
 //    - Type: private Long
 //    - This field represents the customer who created the review.
 //    - This field cannot be empty, use the @NotNull annotation to enforce this rule.
+    @NotNull(message = "Customer cannot be null")
+    private Long custormerId;
 
 // 2. Add 'productId' field:
 //    - Type: private Long
 //    - This field represents the product being reviewed.
 //    - This field cannot be empty, use the @NotNull annotation to enforce this rule.
+    @NotNull(message = "Product cannot be null")
+    private Long productId;
 
 // 3. Add 'storeId' field:
 //    - Type: private Long
 //    - This field represents the store associated with the product.
 //    - This field cannot be empty, use the @NotNull annotation to enforce this rule.
+    @NotNull(message = "Store cannot be null")
+    private Long storeId;
 
 // 4. Add 'rating' field:
 //    - Type: private Integer
 //    - This field represents the rating given to the product (out of 5).
 //    - This field cannot be empty, use the @NotNull annotation to enforce this rule.
+    @NotNull(message = "Rating cannot be null")
+    private Integer rating;
 
 // 5. Add 'comment' field:
 //    - Type: private String
 //    - This field represents an optional comment on the product.
+    private String comment;
 
 // 6. Add validation:
 //    - Apply @NotNull to the customerId, productId, storeId, and rating fields to ensure they are not null.
 //    - Example: @NotNull(message = "Customer cannot be null")
 
 // 7. Add @Document annotation:
-//    - Use @Document(collection = "reviews") to indicate that this class represents a MongoDB document.
+    //    - Use @Document(collection = "reviews") to indicate that this class represents a MongoDB document.
 
 // 8. Add constructor:
 //    - The constructor should accept values for customerId, productId, storeId, rating, and an optional comment.
@@ -42,6 +59,45 @@ public class Review {
 
 // 10. Add Getters and Setters:
 //    - Add getter and setter methods for all fields (customerId, productId, storeId, rating, comment).
-  
 
+
+    public Long getCustormerId() {
+        return custormerId;
+    }
+
+    public void setCustormerId(Long custormerId) {
+        this.custormerId = custormerId;
+    }
+
+    public Long getProductId() {
+        return productId;
+    }
+
+    public void setProductId(Long productId) {
+        this.productId = productId;
+    }
+
+    public Long getStoreId() {
+        return storeId;
+    }
+
+    public void setStoreId(Long storeId) {
+        this.storeId = storeId;
+    }
+
+    public Integer getRating() {
+        return rating;
+    }
+
+    public void setRating(Integer rating) {
+        this.rating = rating;
+    }
+
+    public String getComment() {
+        return comment;
+    }
+
+    public void setComment(String comment) {
+        this.comment = comment;
+    }
 }
