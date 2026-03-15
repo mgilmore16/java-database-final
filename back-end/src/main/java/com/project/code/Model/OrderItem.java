@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 
 @Entity
+@Table(name="order_item")
 public class OrderItem {
 
 // 1. Add 'id' field:

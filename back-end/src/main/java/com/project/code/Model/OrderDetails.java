@@ -8,6 +8,7 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 @Entity
+@Table(name="order_details")
 public class OrderDetails {
 
 // 1. Add 'id' field:

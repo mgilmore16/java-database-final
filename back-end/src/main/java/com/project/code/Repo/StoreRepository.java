@@ -2,6 +2,7 @@ package com.project.code.Repo;
 
 import com.project.code.Model.Store;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
 
 import java.util.List;
 
@@ -26,8 +27,7 @@ public interface StoreRepository extends JpaRepository<Store, Long> {
 //      - Return type: List<Store>
 //      - Parameter: String pname
 //      - Use @Query annotation to write a custom query.
+    @Query("SELECT i FROM Store i WHERE LOWER(i.name) LIKE LOWER(CONCAT('%', :pname, '%'))")
     List<Store> findBySubName(String pname);
-
-   
 
 }

@@ -5,6 +5,7 @@ import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 
 @Entity
+@Table(name = "inventory")
 public class Inventory {
    // 1. Add 'id' field:
 //    - Type: private long 

@@ -8,6 +8,7 @@ import jakarta.validation.constraints.NotNull;
 import java.util.List;
 
 @Entity
+@Table(name="customer")
 public class Customer {
 
 // 1. Add 'id' field: 
