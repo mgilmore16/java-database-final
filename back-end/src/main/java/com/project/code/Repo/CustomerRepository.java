@@ -4,6 +4,8 @@ import com.project.code.Model.Customer;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
+import java.util.Optional;
+
 @Repository
 public interface CustomerRepository extends JpaRepository<Customer, Long> {
 // 1. Add the repository interface:
@@ -25,7 +27,7 @@ public interface CustomerRepository extends JpaRepository<Customer, Long> {
 //      - This method will allow you to find a customer by their ID.
 //      - Return type: Customer
 //      - Parameter: Long id
-    public Customer findByCustormerId(Long custormerId);
+    public Optional<Customer> findById(Long id);
       
 // Example: public Customer findById(Long id);
 

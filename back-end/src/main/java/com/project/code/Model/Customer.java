@@ -88,8 +88,15 @@ public class Customer {
         this.name = name;
     }
 
+    public List<OrderDetails> getCustomerOrders() {
+        return customerOrders;
+    }
 
-// 7. Ensure to use proper annotations and validate constraints:
+    public void setCustomerOrders(List<OrderDetails> customerOrders) {
+        this.customerOrders = customerOrders;
+    }
+
+    // 7. Ensure to use proper annotations and validate constraints:
 //    - Use @NotNull for fields that cannot be empty like 'name', 'email', and 'phone'.
 //    - Make sure you add the correct annotations for entity mapping and relationship management like @Entity, @Id, @GeneratedValue, @OneToMany, and @JsonManagedReference.
 

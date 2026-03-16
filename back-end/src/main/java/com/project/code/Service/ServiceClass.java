@@ -46,5 +46,7 @@ public class ServiceClass {
 //    - Fetches the inventory record for a given product and store combination.
 //    - Parameters: `Inventory inventory`
 //    - Return Type: `Inventory` (Returns the inventory record for the product-store combination)
-
+    public Inventory getInventoryId(Inventory inventory) {
+        return inventoryRepository.findByProductIdandStoreId(inventory.getProduct().getId(), inventory.getStore().getId());
+    }
 }
