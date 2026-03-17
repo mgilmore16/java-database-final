@@ -63,7 +63,7 @@ public class OrderService {
 //    - Create and save `OrderItem` for each product and associate it with the `OrderDetails` using `orderItemRepository.save()`.
         for (PurchaseProductDTO productDto : placeOrderRequest.getPurchaseProduct()) {
             // Decrement stock level
-            Inventory inventory = inventoryRepository.findByProductIdandStoreId(placeOrderRequest.getStoreId(), productDto.getId());
+            Inventory inventory = inventoryRepository.findByProductIdAndStoreId(placeOrderRequest.getStoreId(), productDto.getId());
             if (inventory == null) { throw new EntityNotFoundException("Inventory not found"); }
             inventory.setStockLevel(inventory.getStockLevel()-productDto.getQuantity());
             inventoryRepository.save(inventory);

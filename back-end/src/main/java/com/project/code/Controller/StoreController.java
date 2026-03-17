@@ -58,7 +58,7 @@ public class StoreController {
         catch (Exception ex) {
             return Map.of("Error","Place Order Failed: " +  ex.getMessage());
         }
-        return Map.of("message","Place Order Successfully");
+        return Map.of("message","Order placed successfully");
     }
 
 }

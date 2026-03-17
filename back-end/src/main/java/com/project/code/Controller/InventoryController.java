@@ -143,7 +143,7 @@ public class InventoryController {
 //    - If sufficient stock is available, return `true`; otherwise, return `false`.
     @GetMapping("validate/{quantity}/{storeId}/{productId}")
     public boolean validateQuantity(@PathVariable Long quantity, @PathVariable Long storeId, @PathVariable Long productId) {
-        Inventory inventory = inventoryRepository.findByProductIdandStoreId(productId, storeId);
+        Inventory inventory = inventoryRepository.findByProductIdAndStoreId(productId, storeId);
         return (inventory != null && inventory.getStockLevel() >= quantity);
     }
 }

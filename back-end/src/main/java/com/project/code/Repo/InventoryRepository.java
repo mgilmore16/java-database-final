@@ -21,7 +21,7 @@ public interface InventoryRepository extends JpaRepository<Inventory, Long> {
 //      - This method will allow you to find an inventory record by its product ID and store ID.
 //      - Return type: Inventory
 //      - Parameters: Long productId, Long storeId
-    public Inventory findByProductIdandStoreId(Long productId, Long storeId);
+    public Inventory findByProductIdAndStoreId(Long productId, Long storeId);
       
 // Example: public Inventory findByProductIdandStoreId(Long productId, Long storeId);
 
