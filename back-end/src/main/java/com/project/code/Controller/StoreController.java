@@ -1,13 +1,11 @@
 package com.project.code.Controller;
 
+import com.project.code.Model.PlaceOrderRequestDTO;
 import com.project.code.Model.Store;
 import com.project.code.Repo.StoreRepository;
 import com.project.code.Service.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.Map;
 
@@ -42,14 +40,25 @@ public class StoreController {
  // 4. Define the `validateStore` Method:
 //    - Annotate with `@GetMapping("validate/{storeId}")` to check if a store exists by its `storeId`.
 //    - Return a **boolean** indicating if the store exists.
-,,,
+    @GetMapping("validate/{storeId}")
+    public boolean validateStore(@PathVariable("storeId") Long storeId){
+        return storeRepository.findById(storeId).isPresent();
+    }
 
  // 5. Define the `placeOrder` Method:
 //    - Annotate with `@PostMapping("/placeOrder")` to handle order placement.
 //    - Accept `PlaceOrderRequestDTO` in the request body.
 //    - Return a success message with key `message` if the order is successfully placed.
 //    - Return an error message with key `Error` if there is an issue processing the order.
+    @PostMapping("/placeOrder")
+    public Map<String,String> placeOrder(@RequestBody PlaceOrderRequestDTO order){
+        try {
+            orderService.saveOrder(order);
+        }
+        catch (Exception ex) {
+            return Map.of("Error","Place Order Failed: " +  ex.getMessage());
+        }
+        return Map.of("message","Place Order Successfully");
+    }
 
-
-   
 }
