@@ -53,8 +53,15 @@ public class Product {
 //    - Use @JsonManagedReference("inventory-product") to manage bidirectional relationships and avoid circular references.
     @OneToMany(mappedBy = "product")
     @JsonManagedReference("inventory-product")
-    private List<Inventory> inventories;
+    private List<Inventory> inventory;
 
+    public List<Inventory> getInventory() {
+        return inventory;
+    }
+
+    public void setInventories(List<Inventory> inventory) {
+        this.inventory = inventory;
+    }
 // 7. Add @Entity annotation:
 //    - Use @Entity above the class name to mark it as a JPA entity.
 

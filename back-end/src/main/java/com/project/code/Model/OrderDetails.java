@@ -43,7 +43,7 @@ public class OrderDetails {
 // 4. Add 'totalPrice' field:
 //    - Type: private Double
 //    - This field represents the total price of the order.
-    private Double totalprice;
+    private Double totalPrice;
 
 // 5. Add 'date' field:
 //    - Type: private LocalDateTime
@@ -64,10 +64,10 @@ public class OrderDetails {
 //    - A parameterized constructor that accepts Customer, Store, totalPrice, and date as parameters.
     public OrderDetails() {}
 
-    public OrderDetails(Customer customer, Store store, Double totalprice, LocalDateTime date) {
+    public OrderDetails(Customer customer, Store store, Double totalPrice, LocalDateTime date) {
         this.customer = customer;
         this.store = store;
-        this.totalprice = totalprice;
+        this.totalPrice = totalPrice;
         this.date = date;
     }
 
@@ -101,12 +101,12 @@ public class OrderDetails {
         this.store = store;
     }
 
-    public Double getTotalprice() {
-        return totalprice;
+    public Double getTotalPrice() {
+        return totalPrice;
     }
 
-    public void setTotalprice(Double totalprice) {
-        this.totalprice = totalprice;
+    public void setTotalPrice(Double totalPrice) {
+        this.totalPrice = totalPrice;
     }
 
     public LocalDateTime getDate() {

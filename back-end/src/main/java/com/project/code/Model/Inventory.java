@@ -59,6 +59,8 @@ public class Inventory {
         this.stockLevel = stockLevel;
     }
 
+    public Inventory() {}
+
 // 8. Add @Entity annotation:
 //    - Use @Entity above the class definition to mark it as a JPA entity that will be mapped to a database table.
 

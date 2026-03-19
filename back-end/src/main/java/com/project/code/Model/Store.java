@@ -49,6 +49,8 @@ public class Store {
         this.name = name;
         this.address = address;
     }
+
+    public Store() {}
 // 6. Add @Entity annotation:
 //    - Use @Entity above the class name to mark it as a JPA entity.
 

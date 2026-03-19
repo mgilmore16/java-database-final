@@ -62,10 +62,10 @@ public interface ProductRepository extends JpaRepository<Product,Long> {
 //      - Parameters: Long storeId, String pname
 //      - Use @Query annotation to write a custom query.
     @Query("SELECT i.product FROM Inventory i WHERE i.store.id = :storeId AND LOWER(i.product.name) LIKE LOWER(CONCAT('%', :pname, '%'))")
-    public List<Product> findByNameLike(Long storeId, String name);
+    public List<Product> findByNameLike(Long storeId, String pname);
 
     @Query("SELECT i.product FROM Inventory i WHERE i.store.id = :storeId AND LOWER(i.product.name) LIKE LOWER(CONCAT('%', :pname, '%')) AND i.product.category = :category")
-    public List<Product> findByNameAndCategory(Long storeId, String name, String category);
+    public List<Product> findByNameAndCategory(Long storeId, String pname, String category);
 
     @Query("SELECT i.product FROM Inventory i WHERE i.store.id = :storeId AND i.product.category = :category")
     public List<Product> findByCategoryAndStoreId(Long storeId, String category);

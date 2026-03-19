@@ -87,8 +87,9 @@ public class InventoryController {
 //    - It uses the `storeId` as a path variable and fetches the list of products from the database for the given store.
 //    - The products are returned in a `Map` with the key `"products"`.
     @GetMapping("/{storeId}")
-    public Map<String, Object> getAllProducts(@PathVariable Long storeId) {
-        List<Product> products = productRepository.findProductsByStoreId(storeId);
+    public Map<String, Object> getAllProducts(@PathVariable String storeId) {
+        List<Product> products = productRepository.findProductsByStoreId(Long.valueOf(storeId));
+        products.forEach(p -> p.getInventory().size());
         return  Map.of("products", products);
     }
 
@@ -96,18 +97,18 @@ public class InventoryController {
 //    - This method handles HTTP GET requests to filter products by category and name.
 //    - If either the category or name is `"null"`, adjust the filtering logic accordingly.
 //    - Return the filtered products in the response with the key `"product"`.
-    @GetMapping("filter/{category}/{name}/{storeid}")
-    public Map<String, Object> getProductName(@PathVariable String category, @PathVariable String name, @PathVariable Long storeId) {
+    @GetMapping("filter/{category}/{name}/{storeId}")
+    public Map<String, Object> getProductName(@PathVariable String category, @PathVariable String name, @PathVariable String storeId) {
 
         List<Product> products = null;
-        if (category == null) {
-            products = productRepository.findByNameLike(storeId, name);
+        if (category == null || category.equalsIgnoreCase("null")) {
+            products = productRepository.findByNameLike(Long.valueOf(storeId), name);
         }
-        else if (name == null) {
-            products = productRepository.findByCategoryAndStoreId(storeId, category);
+        else if (name == null || name.equalsIgnoreCase("null")) {
+            products = productRepository.findByCategoryAndStoreId(Long.valueOf(storeId), category);
         }
         else {
-            products = productRepository.findByNameAndCategory(storeId, category, name);
+            products = productRepository.findByNameAndCategory(Long.valueOf(storeId),name,category);
         }
         return  Map.of("product", products);
     }

@@ -4,11 +4,10 @@ import com.project.code.Model.Product;
 import com.project.code.Repo.InventoryRepository;
 import com.project.code.Repo.ProductRepository;
 import com.project.code.Service.ServiceClass;
-import jakarta.transaction.Transactional;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -82,13 +81,13 @@ public class ProductController {
 //    - Use conditional filtering logic if `name` or `category` is `"null"`.
 //    - Fetch products based on category using methods like `findByCategory()` or `findProductBySubNameAndCategory()`.
 //    - Return filtered products in a `Map<String, Object>` with key `products`.
-    @GetMapping("/category/{name}/{category}")
+     @GetMapping("/category/{name}/{category}")
     public Map<String, Object> filterbyCategoryProduct(@PathVariable String name, @PathVariable String category) {
         List<Product> products;
-        if (name == null) {
+        if (name == null || name.equalsIgnoreCase("null")) {
             products = productRepository.findByCategory(category);
         }
-        else if  (category == null) {
+        else if  (category == null || category.equalsIgnoreCase("null")) {
             products = productRepository.findProductBySubName(name);
         }
         else {
