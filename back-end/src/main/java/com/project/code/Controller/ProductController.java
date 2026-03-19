@@ -123,13 +123,18 @@ public class ProductController {
     @DeleteMapping("/{id}")
     @Transactional
     public Map<String, String> deleteProduct(@PathVariable Long id) {
-        if (serviceClass.validateProductId(id)) {
-            inventoryRepository.deleteByProductId(id);
-            productRepository.deleteById(id);
-            return  Map.of("message", "Product removed successfully");
+        try {
+            if (serviceClass.validateProductId(id)) {
+                inventoryRepository.deleteByProductId(id);
+                productRepository.deleteById(id);
+                return Map.of("message", "Product removed successfully");
+            }
+            else {
+                return Map.of("message", "Product not found");
+            }
         }
-        else  {
-            return  Map.of("message", "Product not found");
+        catch(Exception e) {
+            return Map.of("message", "Error deleting product: " +  e.getMessage());
         }
     }
 
